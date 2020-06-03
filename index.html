@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html  lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+<title>pokemon</title>
+<style>
+
+body {
+
+margin: 0;
+height: 1580vh;
+display: flex;
+aling-items:center;
+background: #f6bd20;
+}
+</style>
+<img src="" id="pokemon" height="200">
+</head>
+
+<body>
+
+<script>
+
+const $pokemon = document.querySelector('#pokemon')
+function renderpokemon(image){
+$pokemon.setAttribute('src',image)
+}
+
+fetch('https://pokeapi.co/api/v2/pokemon/25/')
+.then(response => response.json())
+.then(pokemon =>{
+renderpokemon(pokemon.sprites.front_default)
+})
+
+fetch('pokemon.json',{
+//method: 'GET',
+//headers: {
+//'Content-Type': 'application/json',
+//'szszfadsdas': 'asdasdas',
+//},
+//body:JSON.stringify({
+//name: 'leonidas',
+//age: 28,
+//)
+
+
+})
+.then(response => response.json())
+.then(data => {
+
+//debugger
+
+renderpokemon(data.image)
+})
+
+
+
+fetch('pikachu.jpeg')
+.then(response => response.blob())
+
+
+.then(binaryLargeObject =>{
+const domString = URL.createObjectURL(binaryLargeObject)
+renderpokemon(data.image)
+
+})
+
+fetch('https://pokeapi.co/api/v2/pokemon/25/')
+.then(response => response.json())
+.then(pokemon =>{
+
+renderpokemon(pokemon.sprites.front_default)
+})
+</script>
+</body>
+</html>
