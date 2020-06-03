@@ -1,0 +1,40 @@
+<html>
+<head>
+    <body>
+
+
+
+<script>
+    var promesa1 = función () {
+        return new Promise (función (resolver, cancelar)
+ 
+                setTimeout (function () {
+                    console.log ("pasan 4 segundos");
+                    resolver ();
+ 
+                }, 4000);
+            });
+        }
+ 
+ 
+        var promesa2 = function () {
+            return new Promise (función (resolver, cancelar) {
+ 
+                setTimeout (function () {
+ 
+                    console.log ("pasan 1 segundos");
+                    resolver ();
+                }, 1000);
+ 
+            });
+        }
+ 
+        promesa1 (). luego (promesa2) .then (function () {
+ 
+            console.log ("termino");
+        });
+</script>
+</body>
+</head>
+</html>
+  

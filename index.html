@@ -1,83 +1,84 @@
-<!DOCTYPE html>
-<html  lang="en">
-
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
-<title>pokemon</title>
-<style>
-
-body {
-
-margin: 0;
-height: 1580vh;
-display: flex;
-aling-items:center;
-background: #f6bd20;
-}
-</style>
-<img src="" id="pokemon" height="200">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Promesas</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f6bd20;
+      font-size: 50px;
+      font-weight: bold;
+      font-family: system-ui;
+    }
+  </style>
 </head>
-
 <body>
-
-<script>
-
-const $pokemon = document.querySelector('#pokemon')
-function renderpokemon(image){
-$pokemon.setAttribute('src',image)
-}
-
-fetch('https://pokeapi.co/api/v2/pokemon/25/')
-.then(response => response.json())
-.then(pokemon =>{
-renderpokemon(pokemon.sprites.front_default)
-})
-
-fetch('pokemon.json',{
-//method: 'GET',
-//headers: {
-//'Content-Type': 'application/json',
-//'szszfadsdas': 'asdasdas',
-//},
-//body:JSON.stringify({
-//name: 'leonidas',
-//age: 28,
-//)
+  <img src="" id="pokemon" height="200">
+  
+  <p id="message"></p>
+  <script>
+    const $pokemon = document.querySelector('#pokemon')
 
 
-})
-.then(response => response.json())
-.then(data => {
-
-//debugger
-
-renderpokemon(data.image)
-})
+    const $message = document.querySelector('#message')
 
 
+    function renderPokemon(image) {
+      $pokemon.setAttribute('src', image)
 
-fetch('pikachu.jpeg')
-.then(response => response.blob())
+
+    }
+    function renderMessage(message) {
+      $message.textContent = message
+    }
+    fetch('https://pokeapi.co/api/v2/pokemon/25/')
+    .then(response => response.json())
+
+    .then(pokemon => {
+      renderPokemon(pokemon.sprites.front_default)
+    })
+    .catch(() => { renderMessage('NO SE ENCUENTRA DISPONIBLE :(') } )
+
+    
+
+    function buy(thingToBuy, time = 2000) {
+
+      return new Promise((resolve, reject) => {
+
+        setTimeout(()=> {
+
+          renderMessage(`${thingToBuy} ✅`)
+          resolve(`${thingToBuy} ✅`)
+
+        }, time)
+      })
+    }
+    console.time()
+    Promise.all([
+      buy('evolucion1', 6000),
+
+      buy('2da', 2000),
+
+      buy('niveldios', 1000),
+
+      buy('legendario', 2000),
+    ])
+    .then((cart) => {
+      console.timeEnd()
+
+      renderMessage(cart.toString())
+    })
+
+  
 
 
-.then(binaryLargeObject =>{
-const domString = URL.createObjectURL(binaryLargeObject)
-renderpokemon(data.image)
-
-})
-
-fetch('https://pokeapi.co/api/v2/pokemon/25/')
-.then(response => response.json())
-.then(pokemon =>{
-
-renderpokemon(pokemon.sprites.front_default)
-})
-</script>
+  </script>
 </body>
 </html>

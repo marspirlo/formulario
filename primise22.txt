@@ -1,0 +1,17 @@
+1 new Promise((resolver, rechazar) => { 
+2     console.log('Inicial'); 
+3 
+ 
+4     resolver(); 
+5 }) 
+6 .then(() => { 
+7     throw new Error('Algo falló'); 
+8          
+9     console.log('Haz esto'); 
+10 }) 
+11 .catch(() => { 
+12     console.log('Haz aquello'); 
+13 }) 
+14 .then(() => { 
+15     console.log('Haz esto sin que importe lo que sucedió antes'); 
+16 }); 
